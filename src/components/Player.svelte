@@ -1,15 +1,27 @@
 <script>
     import InformationModal from "./InformationModal.svelte";
 
-    export let activateCard;
+    export let cards = [];
+    export let toggleCard;
     export let player;
     export let max;
+
+    $: {
+      name = player.name;
+
+      // calculate points
+      points = 0;
+
+      cards.forEach((card, i) => {
+        if (card.active)
+          points += card.points
+      });
+
+    }
 
     let name = "";
     let points = 0;
     let modal = false;
-
-    let cards = [];
 
     function openModal(event) {
         event.preventDefault();
@@ -26,18 +38,13 @@
         if (points > 0)
             points--;
     }
-
-    player.subscribe(p => {
-        name = p.name;
-        cards = p.cards;
-    })
 </script>
 
 <InformationModal title="{name}" shown="{modal}">
     <div class="text-base font-normal">
         {#each cards as card}
-            <label on:click={activateCard.bind({}, card.id, name, cards)}>
-                <input type="checkbox" class="my-1" checked={card.active}/>
+            <label on:click={(event) => toggleCard(card.active, card.id, name)}>
+                <input type="checkbox" class="my-1" active={card.active} bind:checked={card.active}/>
                 {card.name}
             </label><br/>
         {/each}

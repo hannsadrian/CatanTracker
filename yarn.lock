@@ -1029,11 +1029,6 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-svelte-checkbox@^1.0.0-beta.9:
-  version "1.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/svelte-checkbox/-/svelte-checkbox-1.0.0-beta.9.tgz#633490fd4f314f39a6ebcaf350c9c8a92c200d56"
-  integrity sha512-C+GEEdQHi3CrA5Uh0l1d/b14YW1IpFiHQIinlGQhEy9AYaNdlLT6aLWUH7LnITUEmZ066ggmb+ytwpZW00h4jw==
-
 svelte-preprocess@^3.7.4:
   version "3.9.12"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.9.12.tgz#21e8452e45c6a4d89df37a38714af4a0186df3a1"

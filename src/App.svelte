@@ -6,7 +6,7 @@
     let name = "";
 
     let max = 13;
-    let players = [];
+    let players = writable([]);
 
     let onlyOnce = [
         {id: 0, name: "Längste Handelsstraße", points: 2},
@@ -15,14 +15,56 @@
         {id: 3, name: "Größter Räuberschreck", points: 2}
     ]
 
-    function activateCard(id, player, cards) {
-        console.log(id)
-        console.log(player)
-        players.forEach(p => {
-            p.subscribe(s => {
-                console.log(s)
-            })
+    function toggleCard(checked, id, playername) {
+        if (checked === false)
+          activateCard(id, playername)
+        else
+          deactivateCard(id, playername)
+    }
+
+    async function deactivateCard(id, playername) {
+      const unsubscribe = players.subscribe(j => {
+        j.forEach(p => {
+          if (p.name !== playername)
+            return;
+          p.cards.forEach(card => {
+            if (card.id !== id)
+              return;
+
+            card.active = false;
+          });
         })
+      })
+      unsubscribe()
+      // update view
+      setTimeout(() => players = players, 100)
+    }
+
+    async function activateCard(id, playername) {
+      const unsubscribe = players.subscribe(j => {
+        j.forEach(p => {
+          // remove active cards from other players
+          if (p.name !== playername) {
+            p.cards.forEach(card => {
+              if (card.id !== id)
+                return;
+
+              card.active = false;
+            });
+          } else {
+            // activate card for player
+            p.cards.forEach(card => {
+              if (card.id !== id)
+                return;
+
+              card.active = true;
+            });
+          }
+        })
+      })
+      unsubscribe()
+      // update view
+      setTimeout(() => players = players, 100)
     }
 
     function addPlayer(event) {
@@ -32,19 +74,18 @@
             cards.push({...card, active: false})
             cards = cards;
         })
-        players.push(writable({name: name, cards: cards}))
-        players = players;
+        $players = [...$players, {name: name, cards: cards}]
         name = "";
     }
 </script>
 
 <Tailwindcss/>
 <main class="text-xl font-semibold m-2">
-    {#if players.length === 0}
+    {#if $players.length === 0}
         <p class="italic font-thin">Keine Spieler vorhanden</p>
     {/if}
-    {#each players as player}
-        <Player {activateCard} {player} {max}/>
+    {#each $players as player}
+        <Player {toggleCard} {player} cards={player.cards} {max}/>
     {/each}
     <div class="mt-12 flex justify-between text-base font-normal">
         <form on:submit={addPlayer}>
