@@ -26,6 +26,15 @@
       points += bonusPoints;
     }
 
+    $: {
+      if (max) {
+        // update displayed points
+        let t = points;
+        points = 0;
+        points = t;
+      }
+    }
+
     let name = "";
     let points = 0;
     let modal = false;
