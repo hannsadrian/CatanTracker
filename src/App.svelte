@@ -93,11 +93,11 @@
     {/each}
     <div class="mt-12 flex justify-between text-base font-normal">
         <form on:submit={addPlayer}>
-            <input bind:value={name} class="rounded px-1 border" placeholder="Name"/>
+            <input bind:value={name} class="rounded my-1 px-1 border" placeholder="Name"/>
             <button class="text-sm text-white bg-blue-600 p-1 rounded" type="submit">Hinzufügen</button>
         </form>
         <div>
-            <p>{max} maximale Siegpunkte</p>
+            <p>{max} max. SP</p>
             <div class="flex">
                 <p class="my-auto mr-2">5</p>
                 <input class="w-3/4" min="5" max="20" bind:value={max} type="range"/>
