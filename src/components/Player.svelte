@@ -80,7 +80,7 @@
           {:else}
             <label on:click={(event) => toggleCard(card.active, card.id, name)}>
                 <input type="checkbox" class="my-1" active={card.active} bind:checked={card.active}/>
-                {card.name} <span class="text-gray-500 italic">({card.points} Punkte)</span>
+                {card.name} <span class="text-gray-500 italic">({card.points} Punkt{card.points === 1 ? "" : "e"})</span>
             </label><br/>
           {/if}
         {/each}
