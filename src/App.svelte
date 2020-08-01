@@ -12,7 +12,11 @@
         {id: 0, name: "Längste Handelsstraße", points: 2},
         {id: 1, name: "Größte Rittermacht", points: 2},
         {id: 2, name: "Hafenmeister", points: 2},
-        {id: 3, name: "Größter Seeäuberschreck", points: 2}
+        {id: 3, name: "Größter Seeäuberschreck", points: 2},
+        {id: -1, name: "BREAK", points: 0},
+        {id: 4, name: "Handelsmetropole", points: 2},
+        {id: 5, name: "Politikmetropole", points: 2},
+        {id: 6, name: "Kulturmetropole", points: 2}
     ]
 
     function toggleCard(checked, id, playername) {
