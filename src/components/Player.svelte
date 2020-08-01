@@ -86,7 +86,7 @@
     </div>
 </InformationModal>
 <a href on:click={openModal}>
-    <div class="flex justify-between my-2">
+    <div class="flex justify-between my-2 bg-gray-200 p-2 rounded">
         <div>
             <h2 class="-mb-2 leading-tight">{name}</h2>
             {#if points >= max}
@@ -95,7 +95,7 @@
                 <p class="font-thin italic">{points} Punkte</p>
             {/if}
         </div>
-        <div class="my-auto sm:w-1/5">
+        <div class="mt-1 sm:w-1/5">
             <input type="range" min="0" max="{max}" bind:value={points} disabled/>
         </div>
     </div>
