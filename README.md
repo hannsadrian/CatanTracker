@@ -2,4 +2,4 @@
 
 # 🌋 Catan Tracker
 
-Upcoming webapp to track victory points for the boardgame Catan.
+Webapp to track victory points for the boardgame Catan.
